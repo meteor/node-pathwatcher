@@ -123,8 +123,10 @@ NAN_METHOD(Watch) {
 
   Handle<String> path = args[0]->ToString();
   WatcherHandle handle = PlatformWatch(*String::Utf8Value(path));
-  if (!PlatformIsHandleValid(handle))
-    return NanThrowTypeError("Unable to watch path");
+  if (!PlatformIsHandleValid(handle)) {
+    int error_number = PlatformInvalidHandleToErrorNumber(handle);
+    return NanThrowError("Unable to watch path", error_number);
+  }
 
   if (g_watch_count++ == 0) {
     SetRef(true);
