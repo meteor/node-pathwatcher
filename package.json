@@ -1,6 +1,6 @@
 {
   "main": "./lib/main.js",
-  "name": "pathwatcher",
+  "name": "meteor-pathwatcher-tweaks",
   "description": "Watch files and directories for changes",
   "version": "2.3.5",
   "licenses": [
